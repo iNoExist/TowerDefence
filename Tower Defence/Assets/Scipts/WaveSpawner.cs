@@ -23,7 +23,7 @@ public class WaveSpawner : MonoBehaviour
     private int nextWave = 0;
     public float countdown = 5.5f;
     public SpawnState state = SpawnState.COUNTING;
-    public TextMeshProUGUI CountText;
+    public TextMeshPro CountText;
     private bool end = false;
 
     private void Update()
