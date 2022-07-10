@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
+    public TurretBlueprint T1BP;
+    public TurretBlueprint T2BP;
+    public TurretBlueprint T3BP;
+    public TurretBlueprint WT1BP;
+    public TurretBlueprint WT2BP;
+    public TurretBlueprint WT3BP;
     BuildManager buildmanager;
 
     void Start()
@@ -11,26 +17,26 @@ public class Shop : MonoBehaviour
     }
     public void BuyT1()
     {
-        buildmanager.SetTurretToBuild(buildmanager.T1Prefab);
+        buildmanager.SetTurretToBuild(T1BP);
     }
     public void BuyT2()
     {
-        buildmanager.SetTurretToBuild(buildmanager.T2Prefab);
+        buildmanager.SetTurretToBuild(T2BP);
     }
     public void BuyT3()
     {
-        buildmanager.SetTurretToBuild(buildmanager.T3Prefab);
+        buildmanager.SetTurretToBuild(T3BP);
     }
     public void BuyWT1()
     {
-        buildmanager.SetTurretToBuild(buildmanager.WT1Prefab);
+        buildmanager.SetTurretToBuild(WT1BP);
     }
     public void BuyWT2()
     {
-        buildmanager.SetTurretToBuild(buildmanager.WT2Prefab);
+        buildmanager.SetTurretToBuild(WT2BP);
     }
     public void BuyWT3()
     {
-        buildmanager.SetTurretToBuild(buildmanager.WT3Prefab);
+        buildmanager.SetTurretToBuild(WT3BP);
     }
 }

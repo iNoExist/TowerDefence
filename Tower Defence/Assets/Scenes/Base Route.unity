@@ -20028,6 +20028,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 778472d884d202243b19db0206314609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  T1BP:
+    prefab: {fileID: 6051962466749725704, guid: a425124410f363a43adb6788601cc3e0, type: 3}
+    cost: 100
+  T2BP:
+    prefab: {fileID: 1148566116233212515, guid: 20ce9a778a1a8c84e90e64e4df4c6a05, type: 3}
+    cost: 250
+  T3BP:
+    prefab: {fileID: 2415760333562941038, guid: d1b1882db25d6fc4f8ff52b752db2e26, type: 3}
+    cost: 500
+  WT1BP:
+    prefab: {fileID: 8847635664386791833, guid: 35c753eff49f8054eaddd40ad0c02538, type: 3}
+    cost: 300
+  WT2BP:
+    prefab: {fileID: 7034576038649743569, guid: 0cfd4b204f4ba974fb1487c5b75e0e91, type: 3}
+    cost: 450
+  WT3BP:
+    prefab: {fileID: 7748586280411429428, guid: 8daa1ce3d6b358648aacce81d490c6b9, type: 3}
+    cost: 700
 --- !u!114 &1401450416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23804,6 +23822,7 @@ GameObject:
   - component: {fileID: 1597453296}
   - component: {fileID: 1597453295}
   - component: {fileID: 1597453297}
+  - component: {fileID: 1597453298}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -23876,6 +23895,19 @@ MonoBehaviour:
   WT1Prefab: {fileID: 8847635664386791833, guid: 35c753eff49f8054eaddd40ad0c02538, type: 3}
   WT2Prefab: {fileID: 7034576038649743569, guid: 0cfd4b204f4ba974fb1487c5b75e0e91, type: 3}
   WT3Prefab: {fileID: 7748586280411429428, guid: 8daa1ce3d6b358648aacce81d490c6b9, type: 3}
+--- !u!114 &1597453298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597453294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1510be00b58c05b47a6b826ac96ab00c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startMoney: 500
 --- !u!1001 &1597686847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31098,6 +31130,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 778472d884d202243b19db0206314609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  T1BP:
+    prefab: {fileID: 6051962466749725704, guid: a425124410f363a43adb6788601cc3e0, type: 3}
+    cost: 100
+  T2BP:
+    prefab: {fileID: 1148566116233212515, guid: 20ce9a778a1a8c84e90e64e4df4c6a05, type: 3}
+    cost: 250
+  T3BP:
+    prefab: {fileID: 2415760333562941038, guid: d1b1882db25d6fc4f8ff52b752db2e26, type: 3}
+    cost: 500
+  WT1BP:
+    prefab: {fileID: 8847635664386791833, guid: 35c753eff49f8054eaddd40ad0c02538, type: 3}
+    cost: 300
+  WT2BP:
+    prefab: {fileID: 7034576038649743569, guid: 0cfd4b204f4ba974fb1487c5b75e0e91, type: 3}
+    cost: 450
+  WT3BP:
+    prefab: {fileID: 7748586280411429428, guid: 8daa1ce3d6b358648aacce81d490c6b9, type: 3}
+    cost: 700
 --- !u!114 &2000692497
 MonoBehaviour:
   m_ObjectHideFlags: 0

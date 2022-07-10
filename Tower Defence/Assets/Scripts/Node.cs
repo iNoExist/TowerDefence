@@ -4,9 +4,10 @@ using UnityEngine;
 public class Node : MonoBehaviour
 {
     public Color hoverColor;
+    public Vector3 positionOffset;
 
-
-    private GameObject turret;
+    [Header("Optional")]
+    public GameObject turret;
     private Renderer rend;
     private Color startColor;
 
@@ -25,7 +26,7 @@ public class Node : MonoBehaviour
         {
             return;
         }
-        if (buildmanager.GetturretToBuild() == null)
+        if (!buildmanager.CanBuild)
         {
             return;
         }
@@ -36,9 +37,14 @@ public class Node : MonoBehaviour
         rend.material.color = startColor;
     }
 
+    public Vector3 GetBuildPosistion()
+    {
+        return (transform.position + positionOffset);
+    }
+
     private void OnMouseDown()
     {
-        if (buildmanager.GetturretToBuild() == null)
+        if (!buildmanager.CanBuild)
         {
             Debug.Log("NO TURRET SELECTED!");
             return;
@@ -48,10 +54,8 @@ public class Node : MonoBehaviour
             Debug.Log("CANT PLACE! ALREADY TURRET!");
             return;
         }
-        
 
-        GameObject turretToBuild = BuildManager.instance.GetturretToBuild();
-        turret = (GameObject)Instantiate(turretToBuild, transform.position, transform.rotation);
+        buildmanager.BuildTurretOn(this);
     }
 
 }
