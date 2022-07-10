@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -18,7 +19,7 @@ public class CameraController : MonoBehaviour
     private bool doMovement = true;
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             doMovement = !doMovement;
         }
@@ -26,6 +27,11 @@ public class CameraController : MonoBehaviour
         {
             return;
         }
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            PanBorderThickness = -1f;
+        }
+        PanBorderThickness = Screen.height / 20;
         // Camera Movement
         if (Input.GetKey("w") || Input.mousePosition.y >= (Screen.height - PanBorderThickness))
         {
@@ -43,10 +49,12 @@ public class CameraController : MonoBehaviour
         {
             transform.Translate(Vector3.back * PanSpeed * Time.deltaTime, Space.World);
         }
-
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         Vector3 pos = transform.position;
-        pos.y -= scroll * 1000 * ScrollSpeed * Time.deltaTime;
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            pos.y -= scroll * 1000 * ScrollSpeed * Time.deltaTime;
+        }
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.z = Mathf.Clamp(pos.z, minZ, maxZ);

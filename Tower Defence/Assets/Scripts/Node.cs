@@ -4,6 +4,7 @@ using UnityEngine;
 public class Node : MonoBehaviour
 {
     public Color hoverColor;
+    public Color NoMoneyColor;
     public Vector3 positionOffset;
 
     [Header("Optional")]
@@ -30,7 +31,14 @@ public class Node : MonoBehaviour
         {
             return;
         }
-        rend.material.color = hoverColor;
+        if (buildmanager.HasMoney)
+        {
+            rend.material.color = hoverColor;
+        }
+        else
+        {
+            rend.material.color = NoMoneyColor;
+        }
     }
     private void OnMouseExit()
     {
@@ -44,6 +52,10 @@ public class Node : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         if (!buildmanager.CanBuild)
         {
             Debug.Log("NO TURRET SELECTED!");
