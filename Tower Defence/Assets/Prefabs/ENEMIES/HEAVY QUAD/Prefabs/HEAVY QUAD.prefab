@@ -46,8 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2f8f84f4f1a884387bdf22441ac98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartSpeed: 4
+  health: 40
+  attack: 30
+  reward: 100
+  DeathEffect: {fileID: 8107482681562690021, guid: 71edef147b59f3542bb8e799afa93bb8, type: 3}
   speed: 4
-  health: 20
 --- !u!65 &-6019285331414258677
 BoxCollider:
   m_ObjectHideFlags: 0

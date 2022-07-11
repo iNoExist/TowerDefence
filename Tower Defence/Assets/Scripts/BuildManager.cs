@@ -13,12 +13,9 @@ public class BuildManager : MonoBehaviour
             Debug.LogError("MORE THAN 1 BUILDMANAGER SCRIPT!");
         }
         instance = this;
-        InvokeRepeating("UpdateMoney", 0f, 0.5f);
     }
 
     private TurretBlueprint turretToBuild;
-    [Header("Text")]
-    public TextMeshPro MoneyText;
     [Header("BuildEffect")]
     public GameObject BuildEffect;
     [Header("Towers")]
@@ -28,14 +25,13 @@ public class BuildManager : MonoBehaviour
     public GameObject WT1Prefab;
     public GameObject WT2Prefab;
     public GameObject WT3Prefab;
-    
+    public GameObject LT1Prefab;
+    public GameObject LT2Prefab;
+    public GameObject LT3Prefab;
+
     public bool CanBuild { get { return turretToBuild != null; } }
     public bool HasMoney { get { return PlayerStats.Money >= turretToBuild.cost; } }
 
-    public void UpdateMoney()
-    {
-        MoneyText.text = ("$" + PlayerStats.Money);
-    }
     public void BuildTurretOn(Node node)
     {
         if (PlayerStats.Money < turretToBuild.cost)
@@ -46,6 +42,7 @@ public class BuildManager : MonoBehaviour
         PlayerStats.Money -= turretToBuild.cost;
         GameObject turret = (GameObject )Instantiate(turretToBuild.prefab, node.GetBuildPosistion(), Quaternion.identity);
         GameObject BuildEff = (GameObject)Instantiate(BuildEffect, node.GetBuildPosistion(), Quaternion.identity);
+        Destroy(BuildEff, 3f);
         node.turret = turret;
         Debug.Log("Turret Built! Money Left: " + PlayerStats.Money);
     }

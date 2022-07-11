@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     private Transform target;
     public float speed = 70f;
     public float ExploRadi = 0f;
+    public float damage = 1f;
     public GameObject impactEffect;
 
     public void Seek (Transform _target)
@@ -24,15 +25,16 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            damage(target);
+            Damage(target);
         }
 
         Destroy(gameObject);
     }
 
-    void damage (Transform enemy)
+    void Damage (Transform enemy)
     {
-        Destroy(enemy.gameObject);
+        Enemy e = enemy.GetComponent<Enemy>();
+        e.TakeDamage(damage);
     }
 
     void explode()
@@ -42,7 +44,7 @@ public class Projectile : MonoBehaviour
         {
             if(collider.tag == "Enemy")
             {
-                damage(collider.transform);
+                Damage(collider.transform);
             }
         }
     }

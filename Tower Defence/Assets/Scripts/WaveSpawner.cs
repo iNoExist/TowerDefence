@@ -62,6 +62,7 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave (Wave _wave)
     {
+        PlayerStats.Waves++;
         state = SpawnState.SPAWNING;
         Debug.Log("Wave Incoming!!");
         for (int i = 0; i < _wave.count; i++)

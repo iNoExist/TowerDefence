@@ -9,6 +9,9 @@ public class Shop : MonoBehaviour
     public TurretBlueprint WT1BP;
     public TurretBlueprint WT2BP;
     public TurretBlueprint WT3BP;
+    public TurretBlueprint LT1BP;
+    public TurretBlueprint LT2BP;
+    public TurretBlueprint LT3BP;
     BuildManager buildmanager;
 
     void Start()
@@ -38,5 +41,17 @@ public class Shop : MonoBehaviour
     public void BuyWT3()
     {
         buildmanager.SetTurretToBuild(WT3BP);
+    }
+    public void BuyLT1()
+    {
+        buildmanager.SetTurretToBuild(LT1BP);
+    }
+    public void BuyLT2()
+    {
+        buildmanager.SetTurretToBuild(LT2BP);
+    }
+    public void BuyLT3()
+    {
+        buildmanager.SetTurretToBuild(LT3BP);
     }
 }

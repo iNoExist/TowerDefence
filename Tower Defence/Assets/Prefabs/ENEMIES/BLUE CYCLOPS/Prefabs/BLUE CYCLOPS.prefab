@@ -1228,8 +1228,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2f8f84f4f1a884387bdf22441ac98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartSpeed: 5
+  health: 11
+  attack: 8
+  reward: 50
+  DeathEffect: {fileID: 7200636362326041484, guid: ee5035a8c802acc458cbeb7f4c8267c4, type: 3}
   speed: 5
-  health: 8
 --- !u!136 &-6095376820155653117
 CapsuleCollider:
   m_ObjectHideFlags: 0
