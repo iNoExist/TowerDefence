@@ -4,18 +4,26 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+    public ScreenFader screenFader;
     public TextMeshProUGUI WavesText;
     void OnEnable()
     {
         WavesText.text = PlayerStats.Waves.ToString();
     }
 
+    public void Continue()
+    {
+        int next = PlayerStats.Level_ + 1;
+        SceneManager.LoadScene(next);
+    }
     public void Retry()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
+        screenFader.FadeTo(SceneManager.GetActiveScene().buildIndex);
     }
     public void Menu()
     {
-        Debug.Log("Menu");
+        Time.timeScale = 1f;
+        screenFader.FadeTo(0);
     }
 }

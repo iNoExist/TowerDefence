@@ -24,12 +24,17 @@ public class WaveSpawner : MonoBehaviour
     public float countdown = 5.5f;
     public SpawnState state = SpawnState.COUNTING;
     public TextMeshPro CountText;
-    private bool end = false;
+    [HideInInspector]
+    public bool WaveEnd = false;
 
     private void Update()
     {
-        if (end)
+        if (WaveEnd)
         {
+            if (!PlayerStats.WavesEnded)
+            {
+                PlayerStats.WavesEnded = true;
+            }
             return;
         }
         if (countdown <= 0f)
@@ -40,7 +45,7 @@ public class WaveSpawner : MonoBehaviour
                 StartCoroutine( SpawnWave( waves[nextWave] ) );
                 if (nextWave+1 > waves.Length -1)
                 {
-                    end = true;
+                    WaveEnd = true;
                     Debug.Log("End of level");
                     countdown = 0;
                 }
@@ -76,7 +81,6 @@ public class WaveSpawner : MonoBehaviour
     }
     void SpawnEnemy(Transform _enemy)
     {
-        Debug.Log("Spawning: " + _enemy.name);
         Instantiate(_enemy, transform.position, transform.rotation);
     }
 

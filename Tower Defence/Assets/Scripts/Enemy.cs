@@ -1,16 +1,19 @@
+using UnityEngine.UI;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [Header("Stats")]
     public float StartSpeed = 10f;
-    public float health = 2f;
+    public float StartHealth;
     public float attack = 1f;
     public int reward = 10;
     [Header("Effect")]
     public GameObject DeathEffect;
+    [Header("UnityStuff")]
+    public Image HealthBar;
+    public GameObject HealthUI;
 
     private Transform target;
     private int waypointIndex = 0;
@@ -18,10 +21,13 @@ public class Enemy : MonoBehaviour
     private bool dieOnce = false;
     [HideInInspector]
     public float speed;
+    [HideInInspector]
+    public float health;
     void Start()
     {
         target = Waypoints.points[0];
         speed = StartSpeed;
+        health = StartHealth;
     }
 
     public void Slow(float pct)
@@ -33,9 +39,10 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(3);
     }
 
-        public void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
+        HealthBar.fillAmount = health / StartHealth;
         if (health <= 0 && !dieOnce)
         {
             dieOnce = true;
@@ -61,6 +68,8 @@ public class Enemy : MonoBehaviour
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+        Vector3 v = new Vector3(-200, 90, -35);
+        HealthUI.transform.LookAt(v);
 
         if (Vector3.Distance(transform.position, target.position) <= 0.4f)
         {

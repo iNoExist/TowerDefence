@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public TextMeshPro LivesText;
     [Header("Assign")]
     public GameObject GameOverUI;
+    public GameObject GameWonUI;
+    public GameObject PauseUI;
 
     [HideInInspector]
     public static bool GameOver;
@@ -35,11 +37,53 @@ public class GameManager : MonoBehaviour
         {
             EndGame();
         }
+        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+        {
+            if (!GameOver && (Time.timeSinceLevelLoad > 0.9f))
+            {
+                TogglePause();
+            }
+        }
+        if(PlayerStats.WavesEnded)
+        {
+            if (!enemyLeft())
+            {
+                Won();
+            }
+        }
+    }
+
+    public bool enemyLeft()
+    {
+        if ((GameObject.FindGameObjectsWithTag("Enemy")).Length == 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public void TogglePause()
+    {
+        PauseUI.SetActive(!PauseUI.activeSelf);
+        if(PauseUI.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
     void EndGame()
     {
         GameOver = true;
         GameOverUI.SetActive(true);
-
+    }
+    void Won()
+    {
+        GameOver = true;
+        GameWonUI.SetActive(true);
+        PlayerPrefs.SetInt(PlayerStats.Level_ + "Won", 1);
+        PlayerPrefs.Save();
     }
 }

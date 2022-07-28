@@ -5,17 +5,10 @@ using UnityEngine;
 
 public class BuildManager : MonoBehaviour
 {
-    public static BuildManager instance;
-    private void Awake()
-    {
-        if(instance != null)
-        {
-            Debug.LogError("MORE THAN 1 BUILDMANAGER SCRIPT!");
-        }
-        instance = this;
-    }
-
     private TurretBlueprint turretToBuild;
+    private Node SelectedNode;
+    [Header("UI")]
+    public NodeUI nodeUI;
     [Header("BuildEffect")]
     public GameObject BuildEffect;
     [Header("Towers")]
@@ -29,27 +22,43 @@ public class BuildManager : MonoBehaviour
     public GameObject LT2Prefab;
     public GameObject LT3Prefab;
 
+    public static BuildManager instance;
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("MORE THAN 1 BUILDMANAGER SCRIPT!");
+        }
+        instance = this;
+    }
+
     public bool CanBuild { get { return turretToBuild != null; } }
     public bool HasMoney { get { return PlayerStats.Money >= turretToBuild.cost; } }
-
-    public void BuildTurretOn(Node node)
-    {
-        if (PlayerStats.Money < turretToBuild.cost)
-        {
-            Debug.Log("Not enough money!");
-            return;
-        }
-        PlayerStats.Money -= turretToBuild.cost;
-        GameObject turret = (GameObject )Instantiate(turretToBuild.prefab, node.GetBuildPosistion(), Quaternion.identity);
-        GameObject BuildEff = (GameObject)Instantiate(BuildEffect, node.GetBuildPosistion(), Quaternion.identity);
-        Destroy(BuildEff, 3f);
-        node.turret = turret;
-        Debug.Log("Turret Built! Money Left: " + PlayerStats.Money);
-    }
 
     public void SetTurretToBuild(TurretBlueprint turret)
     {
         turretToBuild = turret;
+        DeselectNode();
     }
-
+    public TurretBlueprint GetTurretToBuild()
+    {
+        return turretToBuild;
+    }
+        public void SelectNode(Node node)
+    {
+        if (SelectedNode == node)
+        {
+            DeselectNode();
+            return;
+        }
+        SelectedNode = node;
+        turretToBuild = null;
+        nodeUI.SetTarget(node);
+    }
+    public void DeselectNode()
+    {
+        SelectedNode = null;
+        nodeUI.hide();
+    }
 }
+

@@ -45,9 +45,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _Ambient: 0
-    - _Bevel: 0.357
+    - _Bevel: 0.466
     - _BevelClamp: 0
-    - _BevelOffset: -0.176
+    - _BevelOffset: 0.082
     - _BevelRoundness: 0
     - _BevelWidth: 0.5
     - _BumpFace: 0
@@ -55,7 +55,7 @@ Material:
     - _ColorMask: 15
     - _CullMode: 0
     - _Diffuse: 0.655
-    - _FaceDilate: 0
+    - _FaceDilate: 0.019
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
     - _GlowInner: 0
@@ -73,8 +73,8 @@ Material:
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 9.22
     - _ScaleRatioA: 0.8333333
-    - _ScaleRatioB: 0.4312633
-    - _ScaleRatioC: 0.5373677
+    - _ScaleRatioB: 0.42117837
+    - _ScaleRatioC: 0.5248016
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0

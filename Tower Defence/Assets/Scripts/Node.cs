@@ -6,11 +6,13 @@ public class Node : MonoBehaviour
     public Color hoverColor;
     public Color NoMoneyColor;
     public Vector3 positionOffset;
-
-    [Header("Optional")]
-    public GameObject turret;
+    [Header("Optional")] 
     private Renderer rend;
     private Color startColor;
+    [HideInInspector]
+    public GameObject turret;
+    [HideInInspector]
+    public TurretBlueprint turretBlueprint;
 
     BuildManager buildmanager;
 
@@ -49,6 +51,28 @@ public class Node : MonoBehaviour
     {
         return (transform.position + positionOffset);
     }
+    public void BuildTurret(TurretBlueprint blueprint)
+    {
+        if (PlayerStats.Money < blueprint.cost)
+        {
+            Debug.Log("Not enough money!");
+            return;
+        }
+        PlayerStats.Money -= blueprint.cost;
+        GameObject _turret = (GameObject)Instantiate(blueprint.prefab, GetBuildPosistion(), Quaternion.identity);
+        GameObject BuildEff = (GameObject)Instantiate(buildmanager.BuildEffect, GetBuildPosistion(), Quaternion.identity);
+        Destroy(BuildEff, 3f);
+        turret = _turret;
+        turretBlueprint = blueprint;
+        Debug.Log("Turret Built!");
+    }
+
+    public void SellTurret()
+    {
+        PlayerStats.Money += turretBlueprint.GetSell();
+        Destroy(turret);
+        turretBlueprint = null;
+    }
 
     private void OnMouseDown()
     {
@@ -56,18 +80,19 @@ public class Node : MonoBehaviour
         {
             return;
         }
+        if (turret != null)
+        {
+            buildmanager.SelectNode(this);
+            return;
+        }
         if (!buildmanager.CanBuild)
         {
             Debug.Log("NO TURRET SELECTED!");
             return;
         }
-        if (turret != null)
-        {
-            Debug.Log("CANT PLACE! ALREADY TURRET!");
-            return;
-        }
 
-        buildmanager.BuildTurretOn(this);
+
+        BuildTurret(buildmanager.GetTurretToBuild());
     }
 
 }
